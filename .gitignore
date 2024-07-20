@@ -12,7 +12,7 @@
 /input_videos
 /output_videos
 
-/units/__pycache__
+/utils/__pycache__
 /trackers/__pycache__
 /tracker_stubs
 /models
