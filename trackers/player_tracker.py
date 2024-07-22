@@ -121,7 +121,7 @@ class PlayerTracker:
         
         # Calculate average position and distance to court center
         avg_player_positions = {track_id: np.mean(positions, axis=0) for track_id, positions in player_positions.items()}
-        distances = [(track_id, np.linalg.norm(avg_position - court_center)) for track_id, avg_position in avg_player_positions.items()]
+        distances = [(track_id, measure_distance(avg_position, court_center)) for track_id, avg_position in avg_player_positions.items()]
         
         # Sort by distance and select closest players
         distances.sort(key=lambda x: x[1])
@@ -129,7 +129,7 @@ class PlayerTracker:
         return chosen_players
 
     def detect_frames(self, frames, read_from_stub=False, stub_path=None):
-        if read_from_stub and stub_path is not None:
+        if (read_from_stub and stub_path is not None):
             with open(stub_path, 'rb') as f:
                 return pickle.load(f)
         
@@ -161,3 +161,5 @@ class PlayerTracker:
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
             output_video_frames.append(frame)
         return output_video_frames
+
+

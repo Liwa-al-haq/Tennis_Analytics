@@ -10,15 +10,15 @@ from copy import deepcopy
 import pandas as pd
 def main():
     #Reading Video
-    input_video_path = "input_videos/input_video5.mp4"
+    input_video_path = "input_videos/input_video.mp4"
     video_frames = read_video(input_video_path)
     
     #Detect the players and ball
     player_tracker = PlayerTracker(model_path='yolov8x')
     ball_tracker = BallTracker('models/yolo5_last.pt')
     
-    player_detections = player_tracker.detect_frames(video_frames, read_from_stub=False, stub_path="tracker_stubs/player_detections5.pkl")
-    ball_detections = ball_tracker.detect_frames(video_frames, read_from_stub=False, stub_path="tracker_stubs/ball_detections5.pkl")
+    player_detections = player_tracker.detect_frames(video_frames, read_from_stub=False, stub_path="tracker_stubs/player_detections.pkl")
+    ball_detections = ball_tracker.detect_frames(video_frames, read_from_stub=True, stub_path="tracker_stubs/ball_detections.pkl")
     ball_detections = ball_tracker.interpolate_ball_positions(ball_detections)
     #Draw the output
     
@@ -186,7 +186,7 @@ def main():
         cv2.putText(frame, f"Frame No: {i}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2)
         output_video_frames[i] = frame
     
-    save_video(output_video_frames, "output_videos/output_video5.avi")
+    save_video(output_video_frames, "output_videos/output_video.avi")
 if __name__ == "__main__":
     main()
     
