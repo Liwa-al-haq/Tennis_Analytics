@@ -1,6 +1,6 @@
 from utils import (read_video,
                    save_video,
-                   measure_distance, draw_player_stats, convert_meters_to_pixel_distance, convert_pixel_distance_to_meters)
+                   measure_distance, draw_player_stats, convert_meters_to_pixel_distance, convert_pixel_distance_to_meters,draw_ball_stat)
 import constants
 from trackers import PlayerTracker, BallTracker
 from court_line_detector import CourtLineDetector
@@ -108,7 +108,7 @@ def main():
     player_stats_data_df['player_2_average_player_speed'] = player_stats_data_df['player_2_total_player_speed']/player_stats_data_df['player_1_number_of_shots']
     
     
-        
+    print(f"ball_shot_frames: {ball_shot_frames}")
         
     output_video_frames = player_tracker.draw_bboxes(video_frames, player_detections)
     output_video_frames = ball_tracker.draw_bboxes(video_frames, ball_detections)
@@ -123,6 +123,8 @@ def main():
     
     #Later Draw Player Stats
     output_video_frames = draw_player_stats(output_video_frames, player_stats_data_df)
+    
+    output_video_frames = draw_ball_stat(output_video_frames, ball_shot_frames)
     #Draw frame no on top left corner 
     for i, frame in enumerate(output_video_frames):
         cv2.putText(frame, f"Frame No: {i}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2)
