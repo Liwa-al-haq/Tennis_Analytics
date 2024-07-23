@@ -1,12 +1,9 @@
 # Tennis Analytics
-
-
-![Tennis Analytics](https://imgur.com/a/RAU0GmS)
-
-
 ## Introduction
 
 The Tennis Analytics Project is designed to enhance the understanding and analysis of tennis matches. By utilizing  computer vision models and algorithms, this project provides insights into player movements, shot speeds. 
+![image](https://github.com/user-attachments/assets/8f3eb74f-d2ce-43bd-9efe-77cd57421b9b)
+
 
 ## Features
 
